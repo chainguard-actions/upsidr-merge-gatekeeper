@@ -9,6 +9,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
 | v1.1.0 | [`v1.1.0`](https://github.com/chainguard-actions/merge-gatekeeper/tree/v1.1.0) | — |
+| v1.2.0 | [`v1.2.0`](https://github.com/chainguard-actions/merge-gatekeeper/tree/v1.2.0) | — |
 | v1.2.1 | [`v1.2.1`](https://github.com/chainguard-actions/merge-gatekeeper/tree/v1.2.1) | — |
 
 ## Privacy
