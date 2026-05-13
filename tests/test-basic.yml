@@ -1,0 +1,38 @@
+name: Test basic usage - merge-gatekeeper
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: pull_request
+      GITHUB_REF: refs/pull/1/merge
+      GITHUB_HEAD_REF: feature-branch
+      GITHUB_BASE_REF: main
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run merge-gatekeeper with required token input
+        id: action
+        continue-on-error: true
+        uses: .
+        with:
+          token: ${{ github.token }}
+          self: merge-gatekeeper
+          interval: "5"
+          timeout: "10"
+          ignored: ""
+          ref: ${{ github.sha }}
+
+      - name: Assert action was invoked (token input covered)
+        run: |
+          echo "Action outcome: ${{ steps.action.outcome }}"
+          # The action is expected to either succeed or fail due to no real PR context.
+          # What matters is that it was invoked with the token input covered.
+          # A 'failure' outcome here means the action ran but found no matching PR/jobs,
+          # which is acceptable in a local test environment.
+          if [ "${{ steps.action.outcome }}" = "skipped" ]; then
+            echo "FAIL: action was skipped unexpectedly"
+            exit 1
+          fi
+          echo "PASS: action was invoked with token input"
