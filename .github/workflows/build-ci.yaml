@@ -1,0 +1,43 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+  pull_request:
+    branches:
+      - main
+      - release/v*
+    paths:
+      - cmd/**
+      - internal/**
+      - go.mod
+      - go.sum
+
+env:
+  GO_VERSION: 1.16.7
+
+permissions: {}
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out
+        uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@0caeaed6fd66a828038c2da3c0f662a42862658f # v1
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Run Go Build
+        run: go build ./...
+      - name: Run Go Test
+        run: go test ./...

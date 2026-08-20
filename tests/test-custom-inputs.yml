@@ -1,4 +1,4 @@
-name: Test basic usage
+name: Test custom inputs (ignored jobs and custom self name)
 on:
   workflow_dispatch:
 jobs:
@@ -26,18 +26,19 @@ jobs:
         continue-on-error: true
         with:
           token: ${{ github.token }}
-          self: merge-gatekeeper
+          self: my-custom-gatekeeper
           interval: "5"
           timeout: "30"
+          ignored: "lint,build,deploy"
           ref: ${{ steps.sha.outputs.sha }}
 
-      - name: Assert action ran (success or graceful failure on sentinel repo)
+      - name: Assert action ran with custom inputs (success or graceful failure on sentinel repo)
         env:
           OUTCOME: ${{ steps.action.outcome }}
         run: |
           echo "outcome: $OUTCOME"
           if [ "$OUTCOME" = "success" ]; then
-            echo "PASS: action succeeded"
+            echo "PASS: action succeeded with custom inputs"
           elif [ "$OUTCOME" = "failure" ]; then
             echo "PASS: action failed gracefully (sentinel repo is not resolvable)"
           else

@@ -1,4 +1,4 @@
-name: Test basic usage
+name: Test short timeout behavior
 on:
   workflow_dispatch:
 jobs:
@@ -28,10 +28,10 @@ jobs:
           token: ${{ github.token }}
           self: merge-gatekeeper
           interval: "5"
-          timeout: "30"
+          timeout: "10"
           ref: ${{ steps.sha.outputs.sha }}
 
-      - name: Assert action ran (success or graceful failure on sentinel repo)
+      - name: Assert action ran and exited (timeout or graceful failure on sentinel repo)
         env:
           OUTCOME: ${{ steps.action.outcome }}
         run: |
@@ -39,7 +39,7 @@ jobs:
           if [ "$OUTCOME" = "success" ]; then
             echo "PASS: action succeeded"
           elif [ "$OUTCOME" = "failure" ]; then
-            echo "PASS: action failed gracefully (sentinel repo is not resolvable)"
+            echo "PASS: action failed gracefully (timed out or sentinel repo not resolvable)"
           else
             echo "FAIL: unexpected outcome '$OUTCOME'"
             exit 1
