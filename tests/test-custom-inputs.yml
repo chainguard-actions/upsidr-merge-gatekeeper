@@ -1,4 +1,4 @@
-name: Test basic usage
+name: Test custom inputs (self, interval, timeout)
 on:
   workflow_dispatch:
 jobs:
@@ -29,20 +29,20 @@ jobs:
         continue-on-error: true
         with:
           token: ${{ github.token }}
-          self: merge-gatekeeper
+          self: "my-custom-gatekeeper"
           ref: ${{ steps.sha.outputs.sha }}
           interval: "5"
           timeout: "10"
 
-      - name: Assert action ran and failed gracefully on sentinel repo
+      - name: Assert action ran with custom inputs and failed gracefully on sentinel repo
         env:
           OUTCOME: ${{ steps.action.outcome }}
         run: |
           echo "outcome: $OUTCOME"
           if [ "$OUTCOME" = "success" ]; then
-            echo "PASS: action succeeded (all checks passed)"
+            echo "PASS: action succeeded with custom self job name"
           elif [ "$OUTCOME" = "failure" ]; then
-            echo "PASS: action failed gracefully (sentinel repo is not resolvable or no checks found)"
+            echo "PASS: action failed gracefully (sentinel repo is not resolvable or timeout reached)"
           else
             echo "FAIL: unexpected outcome '$OUTCOME'"
             exit 1

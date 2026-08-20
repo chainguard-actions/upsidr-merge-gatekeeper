@@ -1,4 +1,4 @@
-name: Test basic usage
+name: Test timeout behavior
 on:
   workflow_dispatch:
 jobs:
@@ -24,6 +24,10 @@ jobs:
         id: sha
         run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
+      - name: Record start time
+        id: start
+        run: echo "start=$(date +%s)" >> "$GITHUB_OUTPUT"
+
       - id: action
         uses: .
         continue-on-error: true
@@ -32,17 +36,26 @@ jobs:
           self: merge-gatekeeper
           ref: ${{ steps.sha.outputs.sha }}
           interval: "5"
-          timeout: "10"
+          timeout: "5"
 
-      - name: Assert action ran and failed gracefully on sentinel repo
+      - name: Assert action completed within a reasonable time (respects timeout)
         env:
           OUTCOME: ${{ steps.action.outcome }}
+          START: ${{ steps.start.outputs.start }}
         run: |
           echo "outcome: $OUTCOME"
+          END=$(date +%s)
+          ELAPSED=$((END - START))
+          echo "elapsed seconds: $ELAPSED"
+          # The action should complete (success or failure) within ~60s given a 5s timeout
+          if [ "$ELAPSED" -gt 60 ]; then
+            echo "FAIL: action took too long ($ELAPSED seconds), timeout may not be respected"
+            exit 1
+          fi
           if [ "$OUTCOME" = "success" ]; then
-            echo "PASS: action succeeded (all checks passed)"
+            echo "PASS: action succeeded within timeout"
           elif [ "$OUTCOME" = "failure" ]; then
-            echo "PASS: action failed gracefully (sentinel repo is not resolvable or no checks found)"
+            echo "PASS: action failed/timed out gracefully within expected time"
           else
             echo "FAIL: unexpected outcome '$OUTCOME'"
             exit 1
