@@ -12,7 +12,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v1.1.0 | [`v1.1.0`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.1.0) | — |
 | v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.1.1) | — |
 | v1.2.0 | [`v1.2.0`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.2.0) | — |
-| v1.2.1 | [`v1.2.1`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.2.1) | — |
+| v1.2.1 | [`v1.2.1`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.2.1) | [`09af7a8`](https://github.com/upsidr/merge-gatekeeper/commit/09af7a82c1666d0e64d2bd8c01797a0bcfd3bb5d) |
 
 ## Privacy
 
