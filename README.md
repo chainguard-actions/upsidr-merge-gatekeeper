@@ -8,7 +8,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
-| v1.0.2 | [`v1.0.2`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.0.2) | — |
+| v1.0.2 | [`v1.0.2`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.0.2) | [`9898273`](https://github.com/upsidr/merge-gatekeeper/commit/98982733a79aec4591639416f117c9ffca534429) |
 | v1.1.0 | [`v1.1.0`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.1.0) | — |
 | v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.1.1) | — |
 | v1.2.0 | [`v1.2.0`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.2.0) | — |
