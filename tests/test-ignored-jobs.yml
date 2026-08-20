@@ -1,4 +1,4 @@
-name: Test basic usage
+name: Test ignored jobs input
 on:
   workflow_dispatch:
 jobs:
@@ -17,16 +17,17 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ steps.get-sha.outputs.sha }}
+          ignored: "lint,build"
           timeout: "10"
           interval: "5"
 
-      - name: Assert action ran (success or graceful failure on sentinel repo)
+      - name: Assert action ran with ignored jobs (success or graceful failure on sentinel repo)
         env:
           OUTCOME: ${{ steps.action.outcome }}
         run: |
           echo "outcome: $OUTCOME"
           if [ "$OUTCOME" = "success" ]; then
-            echo "PASS: action succeeded"
+            echo "PASS: action succeeded with ignored jobs"
           elif [ "$OUTCOME" = "failure" ]; then
             echo "PASS: action failed gracefully (sentinel repo is not resolvable)"
           else
