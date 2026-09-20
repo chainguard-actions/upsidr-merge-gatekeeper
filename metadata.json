@@ -1,7 +1,0 @@
-{
-  "owner": "upsidr",
-  "name": "merge-gatekeeper",
-  "visibility": "internal",
-  "description": "Get better merge control",
-  "block_publish": false
-}
