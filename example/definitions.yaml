@@ -1,0 +1,55 @@
+# == export: standard-setup / begin ==
+---
+name: Merge Gatekeeper
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  merge-gatekeeper:
+    runs-on: ubuntu-latest
+    # Restrict permissions of the GITHUB_TOKEN.
+    # Docs: https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+    permissions:
+      checks: read
+      statuses: read
+    steps:
+      - name: Run Merge Gatekeeper
+        # NOTE: For supply-chain safety, pin to a commit SHA and keep the version
+        #       tag in a trailing comment, e.g. `@<commit SHA> # v2.0.0`.
+        #       https://github.com/upsidr/merge-gatekeeper/tags
+        #       https://github.com/upsidr/merge-gatekeeper/branches
+        uses: upsidr/merge-gatekeeper@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+# == export: standard-setup / end ==
+
+# == export: custom-job-name / begin ==
+---
+name: Merge Gatekeeper
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  merge-gatekeeper-custom:
+    runs-on: ubuntu-latest
+    name: Custom Name for Merge Gatekeeper
+    # Restrict permissions of the GITHUB_TOKEN.
+    # Docs: https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+    permissions:
+      checks: read
+      statuses: read
+    steps:
+      - name: Run Merge Gatekeeper
+        uses: upsidr/merge-gatekeeper@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          self: Custom Name for Merge Gatekeeper # This must match with the Job name provided above.
+# == export: custom-job-name / end ==
