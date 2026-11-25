@@ -13,6 +13,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.1.1) | [`cecbbbd`](https://github.com/upsidr/merge-gatekeeper/commit/cecbbbd48cc3d27ef659cf2a9f2e95bab036d144) | [`HARDENING.md`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/blob/v1.1.1/HARDENING.md) |
 | v1.2.0 | [`v1.2.0`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.2.0) | [`a231533`](https://github.com/upsidr/merge-gatekeeper/commit/a231533e910d79c3e4b7295fd7012a802879b290) | [`HARDENING.md`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/blob/v1.2.0/HARDENING.md) |
 | v1.2.1 | [`v1.2.1`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v1.2.1) | [`09af7a8`](https://github.com/upsidr/merge-gatekeeper/commit/09af7a82c1666d0e64d2bd8c01797a0bcfd3bb5d) | [`HARDENING.md`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/blob/v1.2.1/HARDENING.md) |
+| v2.0.0 | [`v2.0.0`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/tree/v2.0.0) | [`bcae4dd`](https://github.com/upsidr/merge-gatekeeper/commit/bcae4dd95601d7f4dec78eac18d17f372efbd7dd) | [`HARDENING.md`](https://github.com/chainguard-actions/upsidr-merge-gatekeeper/blob/v2.0.0/HARDENING.md) |
 
 ## Privacy
 
